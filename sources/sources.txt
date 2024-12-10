@@ -1,0 +1,5 @@
+Article series
+https://fsharpforfunandprofit.com/posts/property-based-testing/
+
+Related videos
+https://fsharpforfunandprofit.com/pbt/
