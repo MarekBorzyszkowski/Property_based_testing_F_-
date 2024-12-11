@@ -1,0 +1,40 @@
+\documentclass[polish,10pt]{article}
+\usepackage[T1]{fontenc}
+   	\usepackage{polski}
+    \usepackage{babel}
+	\usepackage{subfigure}
+	\usepackage{graphicx}
+	\usepackage{geometry}
+	\usepackage{listings}
+	\usepackage{float}
+    \usepackage{graphicx}
+    \usepackage{listings}
+    \renewcommand{\lstlistlistingname}{Spis listingów}
+    \renewcommand{\listfigurename}{WYKAZ RYSUNKÓW}
+    \renewcommand{\listtablename}{WYKAZ TABEL}
+ 
+    \usepackage[backend=biber, style=numeric, bibstyle=ieee,
+            sorting=none, isbn=false, urldate=ymd,
+            doi=false, url=true]{biblatex}
+    \addbibresource{bibliography/bibliography.bib}
+    \renewbibmacro{in:}{}
+    \renewcommand*{\bibfont}{\small}
+    \newcommand{\bibliographyname}{WYKAZ LITERATURY}
+
+
+    \usepackage[unicode=true]{hyperref}
+
+\title{Testowanie na podstawie właściwości}
+\author{inż. Paulina Brzęcka 184701 \and inż. Marek Borzyszkowski 184266}
+\date{\today}
+\begin{document}
+
+\input{sections/0_title_page}
+\input{sections/1_introduction}
+\input{sections/2_example}
+\input{sections/3_strategies}
+\input{sections/4_quickCheck}
+\input{sections/5_conclusion}
+\input{sections/references}
+
+\end{document}
