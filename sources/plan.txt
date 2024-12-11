@@ -1,6 +1,6 @@
 1. Wstęp - testowanie klasyczne? - M przykłady?
 2. Przykład kontrastowy między klasycznymi testami a testami na podstawie własności - P - PRZYKŁADY     DONE
 3. Jakie są strategie tworzenia PBT - M - PRZYKŁADY
-4. QickCheck - P PRZYKŁAD
+4. QuickCheck - P PRZYKŁAD                                                                              DONE
 5. Coś dalej? (Zakończenie/realny przypadek)? - P przykłady?
 Ogólnie przejrzeć jeszcze raz na szybko filmik i artykuły 
