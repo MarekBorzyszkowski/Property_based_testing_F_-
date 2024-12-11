@@ -1,0 +1,39 @@
+FsCheck, jest biblioteką dla F# wspierającą testowanie oparte na właściwościach (Property-Based Testing). FsCheck automatycznie generuje dane testowe, co pozwala przetestować funkcje na dużej liczbie przypadków, bez konieczności ręcznego pisania danych wejściowych.
+Narysować schemat jak działa quickCheck. fscheck jest implementacją quickchecka w jezyku f#. występuje to w wielu językach programowania. fscheck jest tylko przykładem, ale w innych językach działa to analogicznie.
+
+FsCheck to narzędzie, które umożliwia testowanie funkcji na podstawie właściwości (ang. properties). Właściwości definiują ogólne zasady, które funkcja powinna spełniać, a FsCheck generuje losowe dane, aby te zasady zweryfikować.
+
+open FsCheck
+
+let commutativeProperty x y = (x + y) = (y + x)
+
+Check.Quick commutativeProperty
+
+W tym przykładzie:
+
+    Właściwość commutativeProperty sprawdza komutatywność dodawania.
+    FsCheck generuje losowe liczby dla x i y, testując, czy wynik zawsze jest prawidłowy.
+
+2. Kluczowe funkcje FsCheck
+
+    Check.Quick – uruchamia szybki test, sprawdzając właściwość dla domyślnej liczby losowych przypadków (np. 100).
+    Check.Verbose – działa jak Check.Quick, ale wyświetla więcej szczegółowych informacji o danych testowych.
+    Generowanie danych wejściowych – FsCheck wspiera generowanie danych dla typów prostych (np. int, float, string) i bardziej złożonych struktur, takich jak listy czy rekordy.
+
+Zaawansowane funkcje FsCheck
+
+    Arbitraż (Arbitraries): FsCheck pozwala na tworzenie własnych generatorów danych. Przydatne, gdy chcemy testować funkcję na specyficznych danych (np. tylko liczbach dodatnich).
+
+    Przykład arbitrażu dla liczb dodatnich:
+    type PositiveInt = PositiveInt of int
+
+    let positiveIntGen =
+        Gen.suchThat ((<) 0) Arb.generate<int>
+
+    Arb.register<PositiveInt>(positiveIntGen)
+
+Shrinkowanie danych (Shrinking): Gdy FsCheck wykryje błąd, próbuje zmniejszyć rozmiar danych testowych, aby znaleźć minimalny przypadek prowadzący do błędu.
+
+Przykład: Jeśli błąd wystąpi dla listy [10; 20; 30], FsCheck spróbuje zmniejszyć ją do [10].
+
+FsCheck to narzędzie, które automatyzuje proces testowania i pozwala skupić się na definiowaniu kluczowych właściwości funkcji. Dzięki losowemu generowaniu danych i mechanizmowi shrinkowania FsCheck ułatwia wykrywanie błędów w kodzie. Jest to szczególnie przydatne w językach funkcyjnych, takich jak F#, gdzie właściwości matematyczne są naturalną częścią projektowania aplikacji.
