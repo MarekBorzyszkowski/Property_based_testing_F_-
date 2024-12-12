@@ -1,47 +1,9 @@
 \section{Wstęp}
-
-bum tralala chlapie fala\cite{boinski2007kaskbook}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.7\textwidth]{images/obrazek.png}
-    \caption{Opis do obrazka.}
-    \label{fig:obrazek}
-\end{figure}
-
-\lstset{basicstyle=\scriptsize}
-\begin{lstlisting}[frame=single,caption={Przykładowy listing},label=kod:listingA]
-<?xml version="1.0"?>
-
-<!DOCTYPE rdf:RDF [
- <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
- <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
- <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
- <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-]>
-
-<rdf:RDF xmlns="http://kask.eti.pg.gda.pl/securityA.owl#"
- xml:base="http://kask.eti.pg.gda.pl/securityA.owl"
- xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
- xmlns:owl="http://www.w3.org/2002/07/owl#"
- xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
- xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
- <owl:Ontology rdf:about="http://kask.eti.pg.gda.pl/securityA.owl"/>
-
-\end{lstlisting}
-
-\begin{table}
-    \caption{Opis tabelki}
-    \label{tab:tab1}
-     \centering
-    \begin{tabular}{|c|p{4.5cm}|p{6cm}|}
-      \hline
-      Pole 1 & Pole 2 & Pole 3\\
-      \hline
-      1 & Pojęcie & Opis tegoż pojęcia\\
-      \hline
-      2 & Pojęcie & Opis tegoż pojęcia\\
-      \hline
-    \end{tabular}
-    % \vspace{-0.5cm}
-\end{table}
+Istnieje wiele koncepcji testowania oprogramowania, jedną z nich jest testowanie na podstawie właściwości.
+Ten dokument ma na celu ukazanie:
+\begin{enumerate}
+  \item na czym polega testowanie na podstawie właściwości.
+  \item Czym różni się ono od klasycznego podejścia do testowania.
+  \item Jakie są strategie testowania na podstawie właściwości. 
+  \item Jak przy wykorzystaniu konceptu QuickCheck znaleźć wartości początkowe nieprzechodzące testy.
+\end{enumerate}
