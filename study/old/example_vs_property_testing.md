@@ -49,9 +49,9 @@ Natomiast w tym przypadku musimy zaimplementować w teście ```add```, aby przet
 Zamiast testować pojedyncze przypadki, definiujemy ogólne właściwości, które funkcja powinna zawsze spełniać. Natomiast są różne narzędzia, np. FsCheck, który automatycznie generuje dane wejściowe i sprawdza, czy właściwości są spełniane.
 
 Przykładowo, dla funkcji dodawania możemy zdefiniować następujące właściwości:
- - przemienność (przemienność)
- - dodawanie dwukrotne 1 jest tym samym co jednokrotne dodanie 2 ("łączność")
- - dodanie do liczby 0 nie zmienia wartości liczby (identyczność)
+ - przemienność
+ - dodawanie dwukrotne 1 jest tym samym co jednokrotne dodanie 2
+ - dodanie do liczby 0 nie zmienia wartości liczby
 
  ```fsharp
 let add x y = x + y

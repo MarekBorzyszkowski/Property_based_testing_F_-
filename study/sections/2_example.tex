@@ -1,2 +1,99 @@
 \section{Przykład}
-TU JEST PRZYKŁAD
+
+\section*{Testowanie na przykładach (Example-Based Testing)}
+
+W testowaniu na przykładach sprawdzamy funkcję na podstawie konkretnych wartości wejściowych i oczekiwanych rezultatów.
+
+\subsection*{Załóżmy, że chcemy przetestować funkcję dodawania.}
+
+\subsubsection*{Testowanie na przykładach:}
+\lstset{language=FSharp, basicstyle=\scriptsize}
+\begin{lstlisting}[frame=single,caption={Testowanie na przykładach},label=kod:listingA]
+[Test]
+let ``Add two numbers, expect their sum``() =
+    let testData = [ (1,2,3); (2,2,4); (3,5,8); (27,15,42) ]
+    for (x,y,expected) in testData do
+        let actual = add x y
+        Assert.AreEqual(expected,actual)
+\end{lstlisting}
+
+Deweloper potrafi napisać coś takiego:
+\lstset{language=FSharp, basicstyle=\scriptsize}
+\begin{lstlisting}[frame=single,caption={Testowany kod},label=kod:listingA]
+let add x y =
+    match x,y with
+    | 1,2 -> 3
+    | 2,2 -> 4
+    | 3,5 -> 8
+    | 27,15 -> 42
+    | _ -> 0
+\end{lstlisting}
+
+Dodatkowo odgrażając się, że podąża za regułą TDD, czyli poprawia swój kod minimalnie, dopóki test nie będzie zielony :)
+
+\subsubsection*{Ograniczenia:}
+\begin{itemize}
+    \item Musimy ręcznie wymyślić testowe dane wejściowe.
+    \item Testy obejmują tylko przypadki, które sami zdefiniujemy.
+    \item Trudno przewidzieć wszystkie możliwe scenariusze (np. wartości graniczne, liczby ujemne, liczby bardzo duże itp.).
+\end{itemize}
+
+Można wymusić prawidłowy kod na podstawie generatora liczb losowych:
+\lstset{language=FSharp, basicstyle=\scriptsize}
+\begin{lstlisting}[frame=single,caption={Przykładowe rozwiązanie},label=kod:listingA]
+[Test]
+let ``Add two random numbers 100 times, expect their sum``() =
+    for _ in [1..100] do
+        let x = randInt()
+        let y = randInt()
+        let expected = x + y
+        let actual = add x y
+        Assert.AreEqual(expected,actual)
+\end{lstlisting}
+
+Natomiast w tym przypadku musimy zaimplementować w teście \texttt{add}, aby przetestować funkcję \texttt{add}.
+
+\section*{Testowanie na podstawie właściwości (Property-Based Testing)}
+
+Zamiast testować pojedyncze przypadki, definiujemy ogólne właściwości, które funkcja powinna zawsze spełniać. Są różne narzędzia, np. \texttt{FsCheck}, które automatycznie generują dane wejściowe i sprawdzają, czy właściwości są spełniane.
+
+\subsection*{Przykład właściwości dla funkcji dodawania:}
+\begin{itemize}
+    \item Przemienność.
+    \item Dodanie liczby 1 dwukrotnie jest tym samym co dodanie liczby 2 raz.
+    \item Dodanie liczby 0 nie zmienia wartości liczby.
+\end{itemize}
+
+\lstset{language=FSharp, basicstyle=\scriptsize}
+\begin{lstlisting}[frame=single,caption={Testowanie na właściwościach},label=kod:listingA]
+let add x y = x + y
+
+let commutativeProperty x y =
+    let result1 = add x y
+    let result2 = add y x 
+    result1 = result2
+
+[Test]
+let addDoesNotDependOnParameterOrder() =
+    Check.Quick commutativeProperty
+
+let add1TwiceIsAdd2Property x _ =
+    let result1 = x |> add 1 |> add 1
+    let result2 = x |> add 2
+    result1 = result2
+
+[Test]
+let addOneTwiceIsSameAsAddTwo() =
+    Check.Quick add1TwiceIsAdd2Property
+
+let identityProperty x _ =
+    let result1 = x |> add 0
+    result1 = x
+
+[Test]
+let addZeroIsSameAsDoingNothing() =
+    Check.Quick identityProperty
+\end{lstlisting}
+
+Dzięki podejściu \textit{property-based} mamy większą pewność, że implementacja jest właściwa. Dodatkowo to podejście pozwala lepiej zrozumieć wymagania i istotę całego problemu.\\
+Zdefiniowanie właściwości w bardziej złożonych przypadkach potrafi być bardzo problematyczne. Natomiast istnieją pewne techniki, które pomagają w ich definiowaniu.

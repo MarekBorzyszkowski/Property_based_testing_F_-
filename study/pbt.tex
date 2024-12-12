@@ -9,6 +9,7 @@
 	\usepackage{float}
     \usepackage{graphicx}
     \usepackage{listings}
+    \usepackage{xcolor}
     \renewcommand{\lstlistlistingname}{Spis listingów}
     \renewcommand{\listfigurename}{WYKAZ RYSUNKÓW}
     \renewcommand{\listtablename}{WYKAZ TABEL}
@@ -21,6 +22,25 @@
     \renewcommand*{\bibfont}{\small}
     \newcommand{\bibliographyname}{WYKAZ LITERATURY}
 
+    \definecolor{keywordcolor}{rgb}{0.1,0.1,0.8}
+    \definecolor{stringcolor}{rgb}{0.7,0.1,0.1}
+    \definecolor{commentcolor}{rgb}{0.3,0.7,0.3}
+    \definecolor{backgroundcolor}{rgb}{0.95,0.95,0.95}
+
+    \lstdefinelanguage{FSharp}{
+        keywords={let, match, with, in, function, if, then, else, rec, type, module, open},
+        keywordstyle=\color{keywordcolor}\bfseries,
+        sensitive=true,
+        comment=[l][\color{commentcolor}\itshape]{//},
+        morecomment=[s][\color{commentcolor}\itshape]{(*}{*)},
+        string=[b]",
+        stringstyle=\color{stringcolor},
+        basicstyle=\ttfamily,
+        numbers=left,
+        numberstyle=\tiny\color{gray},
+        backgroundcolor=\color{backgroundcolor},
+        showstringspaces=false
+    }
 
     \usepackage[unicode=true]{hyperref}
 
