@@ -33,4 +33,37 @@ Wykonanie sortowania, a następnie dodanie do każdego elementu listy \texttt{1}
 \end{lstlisting}
 
 \subsection{Tam i z powrotem}
-     
+
+Test z wykorzystaniem inwersji \refrys{fig:inverse_strategy}, polega na sprawdzeniu, czy po zaaplikowaniu testowanej funkcji, następnie wykorzystaniu funkcji odwrotnej do otrzymania początkowych wartości.   
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/property_inverse.png}
+    \caption{Strategia - inwersja}
+    \label{fig:inverse_strategy}
+\end{figure}
+Przykładem takiego testu mogą być przeciwne operacje matematyczne jak:
+\begin{itemize}
+    \item \texttt{dodawanie/odejmowanie}
+    \item \texttt{mnożenie/dzielenie}
+    \item \texttt{potęga/logarytm}.
+\end{itemize} 
+Innymi przykładami są operacje niekoniecznie matematyczne:
+\begin{itemize}
+    \item \texttt{serializacja/deserializacja}
+    \item \texttt{zapis/odczyt z pliku}
+    \item \texttt{wstaw/sprawdź czy zawiera}.
+    \item \texttt{odwrócenie listy/odwrócenie listy}
+\end{itemize} 
+
+\subsection{Są rzeczy niezmienne}
+
+Czasami testowana funkcja przetwarzając dane zachowuje część ich właściwości \refrys{fig:invariant_strategy}. Chociażby funkcje \texttt{sort} lub \texttt{map} wykonane na liście \texttt{n} elementów, zwracaja odpowiednio zmodyfikowaną listę \texttt{n} elementową.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/property_invariant.png}
+    \caption{Strategia - niezmienność}
+    \label{fig:invariant_strategy}
+\end{figure}
+
+\subsection{Z czasem rzeczy przestają się zmieniać}
