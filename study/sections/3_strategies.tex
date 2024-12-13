@@ -67,3 +67,53 @@ Czasami testowana funkcja przetwarzając dane zachowuje część ich właściwo�
 \end{figure}
 
 \subsection{Z czasem rzeczy przestają się zmieniać}
+
+Inną właściwością funkcji może być niezmienność wyniku funkcji po ponownym jej zaaplikowaniu \refrys{fig:independance_strategy}. Innymi słowy, wykonanie funkcji 2 razy daje taki sam efekt, jak jednokrotne jej zaaplikowanie.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/property_idempotence.png}
+    \caption{Strategia - idempotentność}
+    \label{fig:independance_strategy}
+\end{figure}
+
+Przykładami takich operacji, dla których taki typ testu miałby zastosowanie to metoda \texttt{distinct} wykonana na danej liście, lub wykonanie \texttt{update} na danej bazie danych.
+
+\subsection{Dziel i rządź}
+
+Istnieją sposoby na testowanie na podstawie właściwości jest wykorzystanie rekursywności struktur przekazywanych do funkcji, takich jak \texttt{listy}, \texttt{drzewa} \refrys{fig:recursive_strategy}. Przykładem może być sprawdzenie za pomocą tej metody funkcji sort \reflist{kod:list_sort_rec}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/property_induction.png}
+    \caption{Strategia - rekursywność}
+    \label{fig:recursive_strategy}
+\end{figure}
+
+\lstset{language=FSharp, basicstyle=\scriptsize}
+\begin{lstlisting}[frame=single,caption={Test sortowania listy z wykorzystaniem strategii rekursywnej},label=kod:list_sort_rec]
+let rec firstLessThanSecond_andTailIsSorted sortFn (aList:int list) =
+  let sortedList = aList |> sortFn
+  match sortedList with
+  | [] -> true
+  | [first] -> true
+  | [first;second] -> first <= second
+  | first::second::rest->
+    first <= second &&
+    let tail = second::rest
+    // check that tail is sorted
+    firstLessThanSecond_andTailIsSorted sortFn tail
+\end{lstlisting}
+
+\subsection{Łatwiej zweryfikować niż zaimplementować}
+Niekiedy testowana funkcja jest skomplikowana, ale jej rezultat da się łatwo sprawdzić. Przykładem może być funkcja wyszukująca wyjście z labiryntu \refrys{fig:easy_verification_strategy}, gdzie sam algorytm wyszukiwania odpowiedniej ścieżki jest skomplikowany, 
+natomiast samo sprawdzenie, czy ścieżka dobrze prowadzi do wyjścia można w łatwy sposób zweryfikować.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/property_easy_verification.png}
+    \caption{Strategia - łatwe sprawdzenie}
+    \label{fig:easy_verification_strategy}
+\end{figure}
+
+\subsection{Testowanie z wyrocznią}
