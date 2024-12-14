@@ -1,0 +1,92 @@
+\documentclass[polish,aspectratio=169]{beamer}
+
+% wide screen
+% \documentclass[aspectratio=169]{beamer}
+
+
+%%% YOUR PACKAGES HERE %%%
+\usepackage{comment}
+\usepackage{hyperref}
+% \usepackage{tikz} 
+% \usetikzlibrary{graphs,graphs.standard,automata}
+
+
+% polish language
+\usepackage[polish]{babel}
+\usepackage{polski}
+
+
+
+%%% IMPORT PG PRESENTATION STYLE %%%
+\include{pgbeamer/pgbeamer}
+
+
+%%% YOUR OPTIONS HERE %%%
+
+\title[Property based testing]{Property based testing}
+\subtitle{Jak testować zachowanie, a nie przypadki}
+\author{Paulina Brzęcka \and Marek Borzyszkowski}
+\date{\today}
+
+\setbeamercovered{transparent}
+
+\begin{document}
+%%% PG TITLE PAGE %%%
+\pgtitleframe
+
+%%% YOUR PRESENTATION HERE %%%
+
+\setbeamercovered{invisible}
+
+
+% \begin{frame}{Policjanci i złodziej}
+%     Gra odbywa się na grafie $G$ między drużyną policjantów i złodziejem. 
+%     Drużyna policjantów składa się z $K>0$ policjantów, gdzie $K$ to liczba policjantów.
+%     Policjanci i złodzieje znajdują się na wierzchołkach grafu $V\left(G\right)$. \pause
+%     W grze można wyróżnić 2 fazy:
+%     \begin{enumerate}
+%         \item fazę umieszczania najpierw wszystkich policjantów, a potem złodzieja na wierzchołkach $V\left(G\right)$.
+%         \item Fazę ruchu, która odbywa się turowo, najpierw ruszają się wszyscy policjanci, potem turę ma złodziej. 
+%         Dozwolonymi ruchami są:
+%         \begin{enumerate}
+%             \item brak zmiany wierzołka,
+%             \item zmiana wierzchołka na inny będący połączony krawędzią z wierzchołkiem, 
+%             na którym aktualnie przebywa dana osoba.
+%         \end{enumerate} 
+%     \end{enumerate}
+% \end{frame}
+
+
+\begin{frame}{Pytania}
+    \begin{center}
+        {\huge Pytania?}
+    \end{center}
+\end{frame}
+
+\setbeamercovered{transparent}
+\begin{frame}[allowframebreaks]{Bibliografia}
+    \bibliographystyle{plain}
+    \bibliography{bibliography/bibliography.bib}
+\end{frame}
+
+\begin{frame}{Podziękowania}
+    Chcielibyśmy podziękować Panu dr. inż. Janowi Cychnerskiemu za stworzenie 
+    i udostępnienie stylu \href{https://github.com/jachoo/pg-beamer}{\emph{pg-beamer}}, 
+    co zostało wykorzystane do stworzenia tej prezentacji.\\
+    \url{https://github.com/jachoo/pg-beamer}
+     
+\end{frame}
+
+\begin{frame}{Koniec}
+    \begin{center}
+        {\huge Dziękujemy za uwagę!}
+    \end{center}
+\end{frame}
+
+%%% PG LAST PAGE %%%
+\pglastframe
+
+
+%%% DOCUMENT ENDS HERE. Good bye! :) %%%
+
+\end{document}

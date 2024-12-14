@@ -6,7 +6,9 @@
 *.log
 *.lol
 *.lot
+*.nav
 *.out
 *.run.xml
+*.snm
 *.toc
 *.idea
