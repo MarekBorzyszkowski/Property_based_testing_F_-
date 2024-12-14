@@ -7,6 +7,11 @@
 %%% YOUR PACKAGES HERE %%%
 \usepackage{comment}
 \usepackage{hyperref}
+\usepackage[backend=biber, style=numeric, bibstyle=ieee,
+sorting=none, isbn=false, urldate=ymd,
+doi=false, url=true]{biblatex}
+\addbibresource{bibliography/bibliography.bib}
+    \renewbibmacro{in:}{}
 % \usepackage{tikz} 
 % \usetikzlibrary{graphs,graphs.standard,automata}
 
@@ -38,23 +43,27 @@
 
 \setbeamercovered{invisible}
 
+\begin{frame}{Wstęp}
+    Istnieje wiele koncepcji testowania oprogramowania, jedną z nich jest testowanie na podstawie właściwości \cite{pbt_bib}.
+    \onslide<2->{Dziś dowiecie się:
+        \begin{enumerate}
+        \item na czym polega testowanie na podstawie właściwości.
+        \item Czym różni się ono od klasycznego podejścia do testowania.
+        \item Jakie są strategie testowania na podstawie właściwości. 
+        \item Jak przy wykorzystaniu konceptu QuickCheck znaleźć wartości początkowe nieprzechodzące testy.
+        \end{enumerate}
+    }
+\end{frame}
 
-% \begin{frame}{Policjanci i złodziej}
-%     Gra odbywa się na grafie $G$ między drużyną policjantów i złodziejem. 
-%     Drużyna policjantów składa się z $K>0$ policjantów, gdzie $K$ to liczba policjantów.
-%     Policjanci i złodzieje znajdują się na wierzchołkach grafu $V\left(G\right)$. \pause
-%     W grze można wyróżnić 2 fazy:
-%     \begin{enumerate}
-%         \item fazę umieszczania najpierw wszystkich policjantów, a potem złodzieja na wierzchołkach $V\left(G\right)$.
-%         \item Fazę ruchu, która odbywa się turowo, najpierw ruszają się wszyscy policjanci, potem turę ma złodziej. 
-%         Dozwolonymi ruchami są:
-%         \begin{enumerate}
-%             \item brak zmiany wierzołka,
-%             \item zmiana wierzchołka na inny będący połączony krawędzią z wierzchołkiem, 
-%             na którym aktualnie przebywa dana osoba.
-%         \end{enumerate} 
-%     \end{enumerate}
-% \end{frame}
+\begin{frame}{Przykład}
+    TODO
+\end{frame}
+
+\begin{frame}{Strategie}
+    Testowanie na podstawie właściwości nie jest proste w zastosowaniu, przynajmniej przy pierwszej próbie.
+    Istnieją jednak pewne schematy wskazujące drogę, jak stworzyć takie testy.
+
+\end{frame}
 
 
 \begin{frame}{Pytania}
@@ -65,8 +74,7 @@
 
 \setbeamercovered{transparent}
 \begin{frame}[allowframebreaks]{Bibliografia}
-    \bibliographystyle{plain}
-    \bibliography{bibliography/bibliography.bib}
+    \printbibliography
 \end{frame}
 
 \begin{frame}{Podziękowania}
