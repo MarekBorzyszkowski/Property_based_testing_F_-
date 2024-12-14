@@ -117,3 +117,16 @@ natomiast samo sprawdzenie, czy ścieżka dobrze prowadzi do wyjścia można w �
 \end{figure}
 
 \subsection{Testowanie z wyrocznią}
+
+Zdaża się, że funkcjonalność została już napisana i trzeba ją zrefactorować, przepisać, napisać od nowa \refrys{fig:oracle_strategy}. Warto wtedy wykorzystać wartości zwracane przez oryginalnie zaimplementowany algorytm jako pewną wartość wyniku, pewnego rodzaju wyrocznię, uznając go jako prawdę. 
+W taki sposób można sprawdzić, czy nowa funkcja w pewnym stopniu pokrywa się ze starą funkcją. Czasami też istnieje wiele algorytmów doprowadzających do tego samego wyniku, mające różne złożoności, czy też działające równolegle. 
+Można wykożystać wtedy najprostrzy algorytm jako wyrocznię, ze względu na najmniejsze prawdopodobieństwo napisania takiego algorytmu z błędem. Następnie, przy wykorzystaniu wyroczni, stworzyć bardziej skomplikowany (często efektywniejszy) algorytm.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/property_test_oracle.png}
+    \caption{Strategia - wyrocznia}
+    \label{fig:oracle_strategy}
+\end{figure}
+
+
