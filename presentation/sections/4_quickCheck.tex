@@ -104,6 +104,10 @@
         \item Redukcja liczb do coraz mniejszych wartości.
         \item Redukcja ciągów znaków.
     \end{itemize}
+    \begin{lstlisting}[language=FSharp, xleftmargin=-40pt,xrightmargin=-10pt,numbers=none]
+        Arb.shrink "abcd" |> Seq.toList
+        //["bcd"; "acd"; "abd"; "abc"; "abca"; "abcb"; "abcc"; "abad"]
+    \end{lstlisting}
     \end{frame}
     
     \begin{frame}[fragile]{Shrinkowanie}
