@@ -17,13 +17,11 @@
         \column{.5\textwidth}
             Jedną z podstawowych strategii skorzystanie z komutatywności niektórych operacji. Można to zrobić poprzez wykonanie operacji w różnej kolejności.\\
             \onslide<2->{
-                Przykładem takiej strategii może być komutatywność dodawania z 
-                % \reflist{kod:add_all_properties}
-                , gdzie wykorzystano \texttt{add x y}, jak i odwrotność tej operacji \texttt{add y x}.\\ 
+                Przykładem takiej strategii może być komutatywność dodawania, gdzie wykorzystano \texttt{add x y}, jak i odwrotność tej operacji \texttt{add y x}.\\ 
             }
             \onslide<3->{
                 Innym przykładem jest test metody \texttt{sort} danej listy. 
-                Wykonanie sortowania, a następnie dodanie do każdego elementu listy \texttt{1} powinno dać taki sam efekt jak dodanie \texttt{1} do każdego z elementów listy, a następnie jej posortowanie \refrys{fig:commutative_strategy_list_sort} %\reflist{kod:list_sort_add1}.
+                Wykonanie sortowania, a następnie dodanie do każdego elementu listy \texttt{1} powinno dać taki sam efekt jak dodanie \texttt{1} do każdego z elementów listy, a następnie jej posortowanie.
             }
         \column{.5\textwidth}
         \centering
@@ -66,7 +64,7 @@
 \begin{frame}{Strategie - Są rzeczy niezmienne}
     \begin{columns}[t]
         \column{.5\textwidth}
-            Czasami testowana funkcja przetwarzając dane zachowuje część ich właściwości \refrys{fig:invariant_strategy}.
+            Czasami testowana funkcja przetwarzając dane zachowuje część ich właściwości.
             Chociażby funkcje \texttt{sort} lub \texttt{map} wykonane na liście \texttt{n} elementów, zwracaja odpowiednio zmodyfikowaną listę \texttt{n} elementową.
         \column{.5\textwidth}
         \centering
@@ -83,9 +81,9 @@
 \begin{frame}{Strategie - Z czasem rzeczy przestają się zmieniać}
     \begin{columns}[t]
         \column{.5\textwidth}
-            Inną właściwością funkcji może być niezmienność wyniku funkcji po ponownym jej zaaplikowaniu \refrys{fig:independance_strategy}. 
+            Inną właściwością funkcji może być niezmienność wyniku funkcji po ponownym jej zaaplikowaniu. 
             Innymi słowy, wykonanie funkcji 2 razy daje taki sam efekt, jak jednokrotne jej zaaplikowanie.
-            \onslide<2->{Przykładami takich operacji, dla których taki typ testu miałby zastosowanie to metoda \texttt{distinct} wykonana na danej liście, lub wykonanie \texttt{update} na danej bazie danych.            }
+            \onslide<2->{Przykładami takich operacji, dla których taki typ testu miałby zastosowanie to metoda \texttt{distinct} wykonana na danej liście, lub wykonanie \texttt{update} na danej bazie danych.}
         \column{.5\textwidth}
         \centering
         \begin{figure}
@@ -101,41 +99,42 @@
 \begin{frame}[fragile]{Strategie - Dziel i rządź}
     \begin{columns}[t]
         \column{.5\textwidth}
-            Istnieją sposoby na testowanie na podstawie właściwości jest wykorzystanie rekursywności struktur przekazywanych do funkcji, takich jak \texttt{listy}, \texttt{drzewa} \refrys{fig:recursive_strategy}. 
+            Istnieją sposoby na testowanie na podstawie właściwości jest wykorzystanie rekursywności struktur przekazywanych do funkcji, takich jak \texttt{listy}, \texttt{drzewa}. 
             \onslide<2->{
-                Przykładem może być sprawdzenie za pomocą tej metody funkcji sort \reflist{kod:list_sort_rec}.\\
-                \texttt{TU WSTAWIĆ LISTING}
-                % \lstset{language=FSharp, basicstyle=\scriptsize}
-                % \begin{lstlisting}[frame=single,caption={Test sortowania listy z wykorzystaniem strategii rekursywnej},label=kod:list_sort_rec]
-                % let rec firstLessThanSecond_andTailIsSorted sortFn (aList:int list) =
-                % let sortedList = aList |> sortFn
-                % match sortedList with
-                % | [] -> true
-                % | [first] -> true
-                % | [first;second] -> first <= second
-                % | first::second::rest->
-                %     first <= second &&
-                %     let tail = second::rest
-                %     // check that tail is sorted
-                %     firstLessThanSecond_andTailIsSorted sortFn tail
-                % \end{lstlisting}
+                Przykładem może być sprawdzenie za pomocą tej metody funkcji sort.
             }
-            \column{.5\textwidth}
-        \centering
-        \begin{figure}
+        \column{.5\textwidth}
             \centering
-            \includegraphics[width=1\textwidth]{images/property_induction.png}
-            \caption{Strategia - rekursywność}
-            \label{fig:recursive_strategy}
-        \end{figure}    
+            \begin{figure}
+                \centering
+                \includegraphics[width=1\textwidth]{images/property_induction.png}
+                \caption{Strategia - rekursywna}
+                \label{fig:recursive_strategy}
+            \end{figure}    
     \end{columns}
 \end{frame}
 
+\begin{frame}[fragile]{Strategie - Dziel i rządź}
+    \begin{lstlisting}[language=FSharp, xleftmargin=-10pt,xrightmargin=-10pt,numbers=none, basicstyle=\ttfamily\small]
+    let rec firstLessThanSecond_andTailIsSorted sortFn 
+    (aList:int list) =
+    let sortedList = aList |> sortFn
+    match sortedList with
+    | [] -> true
+    | [first] -> true
+    | [first;second] -> first <= second
+    | first::second::rest->
+        first <= second &&
+        let tail = second::rest
+        // check that tail is sorted
+        firstLessThanSecond_andTailIsSorted sortFn tail
+    \end{lstlisting}
+\end{frame}
 
 \begin{frame}{Strategie - Łatwiej zweryfikować niż zaimplementować}
     \begin{columns}[t]
         \column{.5\textwidth}
-            Niekiedy testowana funkcja jest skomplikowana, ale jej rezultat da się łatwo sprawdzić. Przykładem może być funkcja wyszukująca wyjście z labiryntu \refrys{fig:easy_verification_strategy}, gdzie sam algorytm wyszukiwania odpowiedniej ścieżki jest skomplikowany, 
+            Niekiedy testowana funkcja jest skomplikowana, ale jej rezultat da się łatwo sprawdzić. Przykładem może być funkcja wyszukująca wyjście z labiryntu, gdzie sam algorytm wyszukiwania odpowiedniej ścieżki jest skomplikowany, 
             natomiast samo sprawdzenie, czy ścieżka dobrze prowadzi do wyjścia można w łatwy sposób zweryfikować.
         \column{.5\textwidth}
         \centering
@@ -151,11 +150,11 @@
 
 \begin{frame}{Strategie - Testowanie z wyrocznią}
     \begin{columns}[t]
-        \column{.5\textwidth}
-            Zdaża się, że funkcjonalność została już napisana i trzeba ją zrefactorować, przepisać, napisać od nowa \refrys{fig:oracle_strategy}. Warto wtedy wykorzystać wartości zwracane przez oryginalnie zaimplementowany algorytm jako pewną wartość wyniku, pewnego rodzaju wyrocznię, uznając go jako prawdę. 
-            W taki sposób można sprawdzić, czy nowa funkcja w pewnym stopniu pokrywa się ze starą funkcją. Czasami też istnieje wiele algorytmów doprowadzających do tego samego wyniku, mające różne złożoności, czy też działające równolegle. 
+        \column{.65\textwidth}
+            Zdaża się, że funkcjonalność została już napisana i trzeba ją zrefactorować, przepisać, napisać od nowa. Warto wtedy wykorzystać wartości zwracane przez oryginalnie zaimplementowany algorytm jako pewną wartość wyniku, pewnego rodzaju wyrocznię, uznając go jako prawdę. \pause\\
+            W taki sposób można sprawdzić, czy nowa funkcja w pewnym stopniu pokrywa się ze starą funkcją. Czasami też istnieje wiele algorytmów doprowadzających do tego samego wyniku, mające różne złożoności, czy też działające równolegle. \pause\\
             Można wykożystać wtedy najprostrzy algorytm jako wyrocznię, ze względu na najmniejsze prawdopodobieństwo napisania takiego algorytmu z błędem. Następnie, przy wykorzystaniu wyroczni, stworzyć bardziej skomplikowany (często efektywniejszy) algorytm.
-        \column{.5\textwidth}
+        \column{.35\textwidth}
         \centering
         \begin{figure}
             \centering
