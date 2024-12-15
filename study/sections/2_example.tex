@@ -1,12 +1,12 @@
 \section{Geneza}
 
-\section*{Testowanie na przykładach (Example-Based Testing)}
+\subsection{Testowanie na przykładach (Example-Based Testing)}
 
 W testowaniu na przykładach sprawdzamy funkcję na podstawie konkretnych wartości wejściowych i oczekiwanych rezultatów.
 
-\subsection*{Załóżmy, że chcemy przetestować funkcję dodawania.}
+\subsubsection{Załóżmy, że chcemy przetestować funkcję dodawania.}
 
-\subsubsection*{Testowanie na przykładach:}
+Testowanie na przykładach:
 \lstset{language=FSharp, basicstyle=\scriptsize}
 \begin{lstlisting}[frame=single,caption={Testowanie na przykładach},label=kod:listingA]
 [Test]
@@ -31,7 +31,7 @@ let add x y =
 
 Dodatkowo odgrażając się, że podąża za regułą TDD, czyli poprawia swój kod minimalnie, dopóki test nie będzie zielony :)
 
-\subsubsection*{Ograniczenia:}
+\subsubsection{Ograniczenia:}
 \begin{itemize}
     \item Musimy ręcznie wymyślić testowe dane wejściowe.
     \item Testy obejmują tylko przypadki, które sami zdefiniujemy.
@@ -53,11 +53,11 @@ let ``Add two random numbers 100 times, expect their sum``() =
 
 Natomiast w tym przypadku musimy zaimplementować w teście \texttt{add}, aby przetestować funkcję \texttt{add}.
 
-\section*{Testowanie na podstawie właściwości (Property-Based Testing)}
+\subsection{Testowanie na podstawie właściwości (Property-Based Testing)}
 
 Zamiast testować pojedyncze przypadki, definiujemy ogólne właściwości, które funkcja powinna zawsze spełniać. Są różne narzędzia, np. \texttt{FsCheck}, które automatycznie generują dane wejściowe i sprawdzają, czy właściwości są spełniane.
 
-\subsection*{Przykład właściwości dla funkcji dodawania:}
+\subsubsection{Przykład właściwości dla funkcji dodawania:}
 \begin{itemize}
     \item Przemienność.
     \item Dodanie liczby 1 dwukrotnie jest tym samym co dodanie liczby 2 raz.

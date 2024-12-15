@@ -1,7 +1,7 @@
 \section{QuickCheck}
 QuickCheck został stworzony w języku Haskell jako pierwsze narzędzie wspierające testowanie oparte na właściwościach. Jest on inspiracją dla bibliotek w innych językach, takich jak FsCheck dla .NET.
 
-\subsection*{Cechy QuickCheck}
+\subsection{Cechy QuickCheck}
 \begin{itemize}
     \item Automatyczne generowanie danych testowych.
     \item Sprawdzanie, czy zdefiniowane właściwości funkcji są spełniane dla wielu losowych przypadków.
@@ -14,7 +14,7 @@ QuickCheck został stworzony w języku Haskell jako pierwsze narzędzie wspieraj
     \caption{Schemat działania QuickCheck}
 \end{figure}
 
-\subsection*{Działanie}
+\subsection{Działanie}
 \begin{enumerate}
     \item \textbf{Checker API} wykrywa typ wejścia funkcji.
     \item Wywoływany jest generator odpowiedniego typu.
@@ -22,18 +22,18 @@ QuickCheck został stworzony w języku Haskell jako pierwsze narzędzie wspieraj
     \item Przypadki testowe są przekazywane do testowanej właściwości.
 \end{enumerate}
 
-\subsection*{Funkcje}
+\subsection{Funkcje}
 \begin{itemize}
     \item \textbf{Check.Quick} -- uruchamia szybki test, sprawdzając właściwość dla domyślnej liczby losowych przypadków (np. 100).
     \item \textbf{Check.Verbose} -- działa jak Check.Quick, ale wyświetla więcej szczegółowych informacji o danych testowych.
     \item \textbf{Generowanie danych wejściowych} -- FsCheck wspiera generowanie danych dla typów prostych (np. \texttt{int}, \texttt{float}, \texttt{string}) i bardziej złożonych struktur, takich jak listy czy rekordy.
 \end{itemize}
 
-\section*{Pisanie właściwości w FsCheck}
+\subsection{Pisanie właściwości w FsCheck}
 
 FsCheck umożliwia definiowanie właściwości w formie funkcji logicznych. Właściwości opisują, jakie warunki zawsze muszą być spełnione przez funkcję.
 
-\subsection*{Przykład: Odwracanie listy}
+Przykład: Odwracanie listy
 Dla funkcji \texttt{reverse}, która odwraca listę, możemy zdefiniować właściwość:
 \begin{itemize}
     \item Odwrócenie listy dwukrotnie powinno zwrócić pierwotną listę.
@@ -47,7 +47,7 @@ let reverseProperty (xs: int list) =
 Check.Quick reverseProperty
 \end{lstlisting}
 
-\section*{Generacja danych testowych}
+\subsection{Generacja danych testowych}
 
 FsCheck pozwala na tworzenie własnych generatorów danych wybranego typu. Przydatne, gdy chcemy testować funkcję na specyficznych danych. \\
 Na początku tworzymy generator, następnie generujemy dane testowe podając maksymalny rozmiar przypadku testowego (w przypadku stuktur danych) oraz liczbę przypadków testowych.\\
@@ -91,7 +91,7 @@ Gen.sample 50 10 pointGenerator
 *)
 \end{lstlisting}
 
-\section*{Shrinking}
+\subsection{Shrinking}
 
 Po fazie generowania danych losowych dane wejściowe są ustawione od najmniejszej do największej wartości. Jeśli jakiekolwiek dane wejściowe spowodują, że właściwość przestanie być spełniona, narzędzie zaczyna "zmniejszać" pierwszy parametr, aby znaleźć mniejszą wartość. Dokładny proces zmniejszania zależy od typu danych (można go również nadpisać) \textit{(W przypadku liczb prowadząc do coraz mniejszych wartości.)}
 
@@ -124,7 +124,7 @@ Arb.shrink "abcd" |> Seq.toList
 // ["bcd"; "acd"; "abd"; "abc"; "abca"; "abcb"; "abcc"; "abad"]
 \end{lstlisting}
 
-\section*{Konfiguracja}
+\subsection{Konfiguracja}
 Czasem może zaistnieć potrzeba własnego dostosowania liczby testów itp. W tym celu można odpowiednio skonfigurować narzędzie:
 \lstset{language=FSharp, basicstyle=\scriptsize}
 \begin{lstlisting}[frame=single,caption={Dostosowanie konfiguracji testów},label=kod:listingA]
@@ -144,7 +144,7 @@ let config = {
     //         80
 \end{lstlisting}
 
-\section*{Warunki wstępne}
+\subsection{Warunki wstępne}
 \lstset{language=FSharp, basicstyle=\scriptsize}
 \begin{lstlisting}[frame=single,caption={Dodawanie warunków wstępnych},label=kod:listingA]
 let preCondition x y =
@@ -158,7 +158,7 @@ preCondition x y ==> additionIsNotMultiplication x y
 
 Jak widać, tego rodzaju rozwiązania mogą być użyte tylko w nielicznych przypadkach, gdy możemy zdefiniować niewielką liczbę "wyjątków od reguły".
 
-\section*{Testowanie kilku właściwości na raz}
+\subsection{Testowanie kilku właściwości na raz}
 W celu zapewnienia uporządkowania i ustrukturyzowania kodu istnieje możliwość testowania kilku włąsciwosci równocześnie.
 \lstset{language=FSharp, basicstyle=\scriptsize}
 \begin{lstlisting}[frame=single,caption={Sprawdzanie wielu właściwości jednocześnie},label=kod:listingA]

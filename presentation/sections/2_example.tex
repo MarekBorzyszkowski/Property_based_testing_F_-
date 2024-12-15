@@ -1,3 +1,109 @@
-\begin{frame}{Przykład}
-    TODO
+\begin{frame}{Testowanie na przykładach}
+    \begin{itemize}
+        \item Testowanie funkcji na podstawie konkretnych wartości wejściowych i oczekiwanych rezultatów.
+    \end{itemize}
+    \end{frame}
+    
+\begin{frame}[fragile]{Kod testujący}
+    \begin{lstlisting}[language=FSharp, xleftmargin=-10pt,xrightmargin=-10pt,numbers=none]
+    [Test]
+    let ``Add two numbers, expect their sum``() =
+        let testData = [(1,2,3); (2,2,4); (3,5,8); (27,15,42)]
+        for (x,y,expected) in testData do
+            let actual = add x y
+            Assert.AreEqual(expected,actual)
+    \end{lstlisting}
+\end{frame}
+    
+\begin{frame}[fragile]{Deweloper potrafi napisać coś takiego...}
+    \begin{lstlisting}[language=FSharp, xleftmargin=-10pt,xrightmargin=-10pt,numbers=none]
+        let add x y =
+            match x,y with
+            | 1,2 -> 3
+            | 2,2 -> 4
+            | 3,5 -> 8
+            | 27,15 -> 42
+            | _ -> 0
+    \end{lstlisting}
+    Dodatkowo odgrażając się, że podąża za regułą TDD, czyli poprawia swój kod, dopóki test nie będzie zielony :)
+\end{frame}
+    
+\begin{frame}{Ograniczenia podejścia example-based}
+    \begin{itemize}
+        \item Musimy ręcznie wymyślić testowe dane wejściowe.
+        \item Testy obejmują tylko przypadki, które sami zdefiniujemy.
+        \item Trudno przewidzieć wszystkie możliwe scenariusze (np. wartości graniczne, liczby ujemne, bardzo duże liczby).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Automatyczne generowanie danych}
+    \begin{lstlisting}[language=FSharp, xleftmargin=-20pt,xrightmargin=-10pt,numbers=none]
+    [Test]
+    let ``Add two random numbers 100 times, expect their sum``() =
+        for _ in [1..100] do
+            let x = randInt()
+            let y = randInt()
+            let expected = x + y
+            let actual = add x y
+            Assert.AreEqual(expected,actual)
+    \end{lstlisting}
+\end{frame}
+    
+
+\begin{frame}{Testowanie na podstawie właściwości}
+    \begin{itemize}
+        \item Zamiast testować pojedyncze przypadki, definiujemy ogólne właściwości, które funkcja powinna spełniać.
+        \item Narzędzia, np. \texttt{FsCheck}, generują dane wejściowe i sprawdzają właściwości.
+    \end{itemize}
+    \textbf{Przykładowe właściwości:}
+    \begin{itemize}
+        \item Przemienność.
+        \item Dodanie liczby 1 dwukrotnie jest równe dodaniu liczby 2 raz.
+        \item Dodanie liczby 0 nie zmienia wartości liczby.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Przemienność}
+    \begin{lstlisting}[language=FSharp, xleftmargin=-10pt,xrightmargin=-10pt,numbers=none]
+    let add x y = x + y
+
+    let commutativeProperty x y =
+        let result1 = add x y
+        let result2 = add y x 
+        result1 = result2
+
+    [Test]
+    let addDoesNotDependOnParameterOrder() =
+        Check.Quick commutativeProperty
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Pozostałe właściwości}
+    \begin{lstlisting}[language=FSharp, xleftmargin=-10pt,xrightmargin=-10pt,numbers=none, basicstyle=\ttfamily\small]
+    let add1TwiceIsAdd2Property x _ =
+        let result1 = x |> add 1 |> add 1
+        let result2 = x |> add 2
+        result1 = result2
+
+    [Test]
+    let addOneTwiceIsSameAsAddTwo() =
+        Check.Quick add1TwiceIsAdd2Property
+
+    let identityProperty x _ =
+        let result1 = x |> add 0
+        result1 = x
+
+    [Test]
+    let addZeroIsSameAsDoingNothing() =
+        Check.Quick identityProperty
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Zalety podejścia property-based}
+    \begin{itemize}
+        \item Większa pewność poprawności implementacji.
+        \item Lepsze zrozumienie wymagań i istoty problemu.
+        \item Automatyczne generowanie danych pozwala na testowanie różnych scenariuszy.
+    \end{itemize}
 \end{frame}
