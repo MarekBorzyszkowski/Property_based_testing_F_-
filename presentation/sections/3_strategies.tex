@@ -5,7 +5,7 @@
         \item Różne ścieżki, ten sam wynik
         \item Tam i z powrotem
         \item Są rzeczy niezmienne
-        \item Z czasem rzeczy przestają się zmieniać
+        \item Z czasem rzeczy są niezmienne
         \item Dziel i rządź
         \item Łatwiej zweryfikować niż zaimplementować
         \item Testowanie z wyrocznią
@@ -78,7 +78,7 @@
 \end{frame}
 
 
-\begin{frame}{Strategie - Z czasem rzeczy przestają się zmieniać}
+\begin{frame}{Strategie - Z czasem rzeczy są niezmienne}
     \begin{columns}[t]
         \column{.5\textwidth}
             Inną właściwością funkcji może być niezmienność wyniku funkcji po ponownym jej zaaplikowaniu. 
@@ -131,7 +131,7 @@
     \end{lstlisting}
 \end{frame}
 
-\begin{frame}{Strategie - Łatwiej zweryfikować niż zaimplementować}
+\begin{frame}{Strategie - Łatwiej zweryfikować niż\\zaimplementować}
     \begin{columns}[t]
         \column{.5\textwidth}
             Niekiedy testowana funkcja jest skomplikowana, ale jej rezultat da się łatwo sprawdzić. Przykładem może być funkcja wyszukująca wyjście z labiryntu, gdzie sam algorytm wyszukiwania odpowiedniej ścieżki jest skomplikowany, 
@@ -151,16 +151,18 @@
 \begin{frame}{Strategie - Testowanie z wyrocznią}
     \begin{columns}[t]
         \column{.65\textwidth}
-            Zdaża się, że funkcjonalność została już napisana i trzeba ją zrefactorować, przepisać, napisać od nowa. Warto wtedy wykorzystać wartości zwracane przez oryginalnie zaimplementowany algorytm jako pewną wartość wyniku, pewnego rodzaju wyrocznię, uznając go jako prawdę. \pause\\
-            W taki sposób można sprawdzić, czy nowa funkcja w pewnym stopniu pokrywa się ze starą funkcją. Czasami też istnieje wiele algorytmów doprowadzających do tego samego wyniku, mające różne złożoności, czy też działające równolegle. \pause\\
-            Można wykożystać wtedy najprostrzy algorytm jako wyrocznię, ze względu na najmniejsze prawdopodobieństwo napisania takiego algorytmu z błędem. Następnie, przy wykorzystaniu wyroczni, stworzyć bardziej skomplikowany (często efektywniejszy) algorytm.
+            Zdaża się, że funkcjonalność została już napisana i trzeba ją zrefactorować, przepisać, napisać od nowa. Warto wtedy wykorzystać wartości zwracane przez oryginalnie zaimplementowany algorytm jako pewną wartość wyniku, pewnego rodzaju wyrocznię, uznając go jako prawdę.
+            \onslide<2->{W taki sposób można sprawdzić, czy nowa funkcja w pewnym stopniu pokrywa się ze starą funkcją. Czasami też istnieje wiele algorytmów doprowadzających do tego samego wyniku, mające różne złożoności, czy też działające równolegle.}
+            \onslide<3->{Można wykożystać wtedy najprostrzy algorytm jako wyrocznię, ze względu na najmniejsze prawdopodobieństwo napisania takiego algorytmu z błędem. Następnie, przy wykorzystaniu wyroczni, stworzyć bardziej skomplikowany (często efektywniejszy) algorytm.}
         \column{.35\textwidth}
         \centering
+        \onslide<1->{
         \begin{figure}
             \centering
             \includegraphics[width=1\textwidth]{images/property_test_oracle.png}
             \caption{Strategia - wyrocznia}
             \label{fig:oracle_strategy}
-        \end{figure}    
+        \end{figure} 
+        }   
     \end{columns}
 \end{frame}
