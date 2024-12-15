@@ -1,10 +1,5 @@
-\begin{frame}{Testowanie na przykładach}
-    \begin{itemize}
-        \item Testowanie funkcji na podstawie konkretnych wartości wejściowych i oczekiwanych rezultatów.
-    \end{itemize}
-    \end{frame}
-    
-\begin{frame}[fragile]{Kod testujący}
+\begin{frame}[fragile]{Testowanie na przykładach}
+    Testowanie funkcji na podstawie konkretnych wartości wejściowych i oczekiwanych rezultatów.\\pause
     \begin{lstlisting}[language=FSharp, xleftmargin=-10pt,xrightmargin=-10pt,numbers=none]
     [Test]
     let ``Add two numbers, expect their sum``() =
@@ -12,18 +7,19 @@
         for (x,y,expected) in testData do
             let actual = add x y
             Assert.AreEqual(expected,actual)
-    \end{lstlisting}
+        \end{lstlisting}
 \end{frame}
+    
     
 \begin{frame}[fragile]{Deweloper potrafi napisać coś takiego...}
     \begin{lstlisting}[language=FSharp, xleftmargin=-10pt,xrightmargin=-10pt,numbers=none]
-        let add x y =
-            match x,y with
-            | 1,2 -> 3
-            | 2,2 -> 4
-            | 3,5 -> 8
-            | 27,15 -> 42
-            | _ -> 0
+    let add x y =
+        match x,y with
+        | 1,2 -> 3
+        | 2,2 -> 4
+        | 3,5 -> 8
+        | 27,15 -> 42
+        | _ -> 0
     \end{lstlisting}
     Dodatkowo odgrażając się, że podąża za regułą TDD, czyli poprawia swój kod, dopóki test nie będzie zielony :)
 \end{frame}
