@@ -106,7 +106,7 @@ isSmallerThan80 50 // true
 isSmallerThan80 75 // true
 isSmallerThan80 83 // false, so shrink again
 
-Arb.shrink 83 |> Seq.toList//  [0; 44; 66; 77; 80; 81; 83]
+Arb.shrink 83 |> Seq.toList//  [0; 44; 66; 77; 80; 81]
 isSmallerThan80 0 // true
 isSmallerThan80 44 // true
 isSmallerThan80 66 // true
