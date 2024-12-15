@@ -5,7 +5,7 @@
         \item Różne ścieżki, ten sam wynik
         \item Tam i z powrotem
         \item Są rzeczy niezmienne
-        \item Z czasem rzeczy są niezmienne
+        \item Z czasem rzeczy przestają się zmieniać
         \item Dziel i rządź
         \item Łatwiej zweryfikować niż zaimplementować
         \item Testowanie z wyrocznią
@@ -28,6 +28,24 @@
         \begin{figure}
             \centering
             \includegraphics[width=1\textwidth]{images/property_commutative.png}
+            \caption{Strategia - komutatywność}
+            \label{fig:commutative_strategy}
+        \end{figure}    
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Strategie - Różne ścieżki, ten sam wynik}
+    \begin{columns}[t]
+        \column{.5\textwidth}
+            Jedną z podstawowych strategii skorzystanie z komutatywności niektórych operacji. Można to zrobić poprzez wykonanie operacji w różnej kolejności.\\
+            Przykładem takiej strategii może być komutatywność dodawania, gdzie wykorzystano \texttt{add x y}, jak i odwrotność tej operacji \texttt{add y x}.\\ 
+            Innym przykładem jest test metody \texttt{sort} danej listy. 
+            Wykonanie sortowania, a następnie dodanie do każdego elementu listy \texttt{1} powinno dać taki sam efekt jak dodanie \texttt{1} do każdego z elementów listy, a następnie jej posortowanie.
+        \column{.5\textwidth}
+        \centering
+        \begin{figure}
+            \centering
+            \includegraphics[width=1\textwidth]{images/property_list_sort1.png}
             \caption{Strategia - komutatywność}
             \label{fig:commutative_strategy}
         \end{figure}    
@@ -78,7 +96,7 @@
 \end{frame}
 
 
-\begin{frame}{Strategie - Z czasem rzeczy są niezmienne}
+\begin{frame}{Strategie - Z czasem rzeczy\\przestają się zmieniać}
     \begin{columns}[t]
         \column{.5\textwidth}
             Inną właściwością funkcji może być niezmienność wyniku funkcji po ponownym jej zaaplikowaniu. 
