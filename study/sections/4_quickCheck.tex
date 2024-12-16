@@ -49,10 +49,10 @@ Check.Quick reverseProperty
 
 \subsection{Generacja danych testowych}
 
-FsCheck pozwala na tworzenie własnych generatorów danych wybranego typu. Przydatne, gdy chcemy testować funkcję na specyficznych danych. \\
+FsCheck pozwala na tworzenie własnych generatorów danych wybranego typu. Jest to przydatne, gdy chcemy testować funkcję na specyficznych danych. \\
 Na początku tworzymy generator, następnie generujemy dane testowe podając maksymalny rozmiar przypadku testowego (w przypadku stuktur danych) oraz liczbę przypadków testowych.\\
-Zarówno przy generowaniu danych testowych, jak i przy późniejszej redukcji danych (shrinking) wykorzystywaniy jest arbitraż (Arb).\\
-Jest to mechanizm definiowania sposobu generowania losowych danych dla konkretnego typu. Dzięki arbitrażowi możesz dostosować sposób generowania danych, wprowadzić dodatkowe ograniczenia, a nawet zdefiniować własne typy i ich generatory.
+Zarówno przy generowaniu danych testowych, jak i przy późniejszej redukcji danych (shrinking) wykorzystywany jest arbitraż (Arb).\\
+Jest to mechanizm definiowania sposobu generowania losowych danych dla konkretnego typu. Dzięki arbitrażowi można dostosować sposób generowania danych, wprowadzić dodatkowe ograniczenia, a nawet zdefiniować własne typy i ich generatory.
 
 \lstset{language=FSharp, basicstyle=\scriptsize\ttfamily}
 \begin{lstlisting}[frame=single,caption={Przykład generatora dla liczb dodatnich},label=kod:listingA]
@@ -115,8 +115,8 @@ isSmallerThan80 80 // false <- najmniejsza porazka
 // wynik: Falsifiable, after 10 tests (2 shrinks)
 \end{lstlisting}
 
-Narzędzie jest bardzo przydatne do określenia, gdzie znajdują się granice błędów w testowaniu\\
-Shrink działa na customowych typach złożonych, dodatkowo można też generować własne sekwencje oraz zasady w jaki sposób przeprowadzać customowe shrinkowanie. 
+Narzędzie jest bardzo przydatne do określenia, gdzie znajdują się granice błędów w testowaniu.\\
+Shrink działa na customowych typach złożonych, dodatkowo można też generować własne sekwencje oraz zasady, w jaki sposób przeprowadzać customowe shrinkowanie. 
 
 \lstset{language=FSharp, basicstyle=\scriptsize}
 \begin{lstlisting}[frame=single,caption={Shrinkowanie ciągu znaków},label=kod:listingA]
@@ -159,7 +159,7 @@ preCondition x y ==> additionIsNotMultiplication x y
 Jak widać, tego rodzaju rozwiązania mogą być użyte tylko w nielicznych przypadkach, gdy możemy zdefiniować niewielką liczbę "wyjątków od reguły".
 
 \subsection{Testowanie kilku właściwości na raz}
-W celu zapewnienia uporządkowania i ustrukturyzowania kodu istnieje możliwość testowania kilku włąsciwosci równocześnie.
+W celu zapewnienia uporządkowania i ustrukturyzowania kodu istnieje możliwość testowania kilku właściwości równocześnie.
 \lstset{language=FSharp, basicstyle=\scriptsize}
 \begin{lstlisting}[frame=single,caption={Sprawdzanie wielu właściwości jednocześnie},label=kod:listingA]
 type AdditionSpecification =
