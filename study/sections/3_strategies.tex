@@ -31,6 +31,13 @@ Wykonanie sortowania, a następnie dodanie do każdego elementu listy \texttt{1}
         let result2 = aList |> List.map add1 |> sortFn
         result1 = result2
 \end{lstlisting}
+Alternatywną formę tej strategi przedstawiono w \refrys{fig:commutative_strategy_list_sort_with_negation}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/property_list_sort3.png}
+    \caption{Strategia - komutatywność - sortowanie listy z negacją}
+    \label{fig:commutative_strategy_list_sort_with_negation}
+\end{figure}
 
 \subsection{Tam i z powrotem}
 
@@ -52,12 +59,20 @@ Innymi przykładami są operacje niekoniecznie matematyczne:
     \item \texttt{serializacja/deserializacja}
     \item \texttt{zapis/odczyt z pliku}
     \item \texttt{wstaw/sprawdź czy zawiera}.
-    \item \texttt{odwrócenie listy/odwrócenie listy}
-\end{itemize} 
+    \item \texttt{odwrócenie listy/odwrócenie listy} - \refrys{fig:inverse_strategy_list_inversion}
+\end{itemize}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/property_list_rev_inverse.png}
+    \caption{Strategia - inwersja - przykład}
+    \label{fig:inverse_strategy_list_inversion}
+\end{figure}
 
 \subsection{Są rzeczy niezmienne}
 
-Czasami testowana funkcja przetwarzając dane zachowuje część ich właściwości \refrys{fig:invariant_strategy}. Chociażby funkcje \texttt{sort} lub \texttt{map} wykonane na liście \texttt{n} elementów, zwracaja odpowiednio zmodyfikowaną listę \texttt{n} elementową.
+Czasami testowana funkcja przetwarzając dane zachowuje część ich właściwości \refrys{fig:invariant_strategy}. 
+Chociażby funkcje \texttt{sort} lub \texttt{map} wykonane na liście \texttt{n} elementów, zwracaja odpowiednio zmodyfikowaną listę \texttt{n} elementową \refrys{fig:invariant_strategy_example}.
 
 \begin{figure}
     \centering
@@ -66,9 +81,17 @@ Czasami testowana funkcja przetwarzając dane zachowuje część ich właściwo�
     \label{fig:invariant_strategy}
 \end{figure}
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/property_list_sort_permutation.png}
+    \caption{Strategia - niezmienność - przykład}
+    \label{fig:invariant_strategy_example}
+\end{figure}
+
 \subsection{Z czasem rzeczy przestają się zmieniać}
 
-Inną właściwością funkcji może być niezmienność wyniku funkcji po ponownym jej zaaplikowaniu \refrys{fig:independance_strategy}. Innymi słowy, wykonanie funkcji 2 razy daje taki sam efekt, jak jednokrotne jej zaaplikowanie.
+Inną właściwością funkcji może być niezmienność wyniku funkcji po ponownym jej zaaplikowaniu \refrys{fig:independance_strategy}. 
+Innymi słowy, wykonanie funkcji 2 razy daje taki sam efekt, jak jednokrotne jej zaaplikowanie.
 
 \begin{figure}
     \centering
@@ -81,7 +104,8 @@ Przykładami takich operacji, dla których taki typ testu miałby zastosowanie t
 
 \subsection{Dziel i rządź}
 
-Istnieją sposoby na testowanie na podstawie właściwości jest wykorzystanie rekursywności struktur przekazywanych do funkcji, takich jak \texttt{listy}, \texttt{drzewa} \refrys{fig:recursive_strategy}. Przykładem może być sprawdzenie za pomocą tej metody funkcji sort \reflist{kod:list_sort_rec}.
+Istnieją sposoby na testowanie na podstawie właściwości jest wykorzystanie rekursywności struktur przekazywanych do funkcji, takich jak \texttt{listy}, \texttt{drzewa} \refrys{fig:recursive_strategy}. 
+Przykładem może być sprawdzenie za pomocą tej metody funkcji sort \reflist{kod:list_sort_rec}.
 
 \begin{figure}
     \centering
@@ -107,7 +131,7 @@ let rec firstLessThanSecond_andTailIsSorted sortFn (aList:int list) =
 
 \subsection{Łatwiej zweryfikować niż zaimplementować}
 Niekiedy testowana funkcja jest skomplikowana, ale jej rezultat da się łatwo sprawdzić. Przykładem może być funkcja wyszukująca wyjście z labiryntu \refrys{fig:easy_verification_strategy}, gdzie sam algorytm wyszukiwania odpowiedniej ścieżki jest skomplikowany, 
-natomiast samo sprawdzenie, czy ścieżka dobrze prowadzi do wyjścia można w łatwy sposób zweryfikować.
+natomiast samo sprawdzenie, czy ścieżka dobrze prowadzi do wyjścia można w łatwy sposób zweryfikować. Przykład użycia można zobaczyć w \refrys{fig:easy_verification_strategy_example} i~\reflist{kod:list_string_split}.
 
 \begin{figure}
     \centering
@@ -115,6 +139,29 @@ natomiast samo sprawdzenie, czy ścieżka dobrze prowadzi do wyjścia można w �
     \caption{Strategia - łatwe sprawdzenie}
     \label{fig:easy_verification_strategy}
 \end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.35\textwidth]{images/property_string_split.png}
+    \caption{Strategia - łatwe sprawdzenie - przykład \reflist{kod:list_string_split}}
+    \label{fig:easy_verification_strategy_example}
+\end{figure}
+
+\lstset{language=FSharp, basicstyle=\scriptsize}
+\begin{lstlisting}[frame=single,caption={Test string split},label=kod:list_string_split]
+let concatElementsOfSplitString_eq_originalString (strings:string list) =
+    // make a string
+    let inputString = strings |> String.concat ","
+    
+    // use the 'split' function on the inputString
+    let tokens = stringSplit inputString
+    
+    // build a string from the tokens
+    let recombinedString = tokens |> String.concat ","
+    
+    // compare the result with the original
+    inputString = recombinedString
+\end{lstlisting}
 
 \subsection{Testowanie z wyrocznią}
 
